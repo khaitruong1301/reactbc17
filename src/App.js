@@ -6,6 +6,7 @@ import Rendering_Conditions from './Rendering_Conditions/Rendering_Conditions';
 import Ex1StateDemo from './StateDemo/Ex1StateDemo';
 import RenderWithMap from './RenderWithMap/RenderWithMap';
 import QuanLyDanhSachPhim from './RenderWithMap/QuanLyDanhSachPhim';
+import BaiTapXemChiTietSP from './Props/BaiTapXemChiTietSP/BaiTapXemChiTietSP';
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
       {/* <Rendering_Conditions /> */}
       {/* <Ex1StateDemo /> */}
       {/* <RenderWithMap /> */}
-      <QuanLyDanhSachPhim />
+      {/* <QuanLyDanhSachPhim /> */}
+      <BaiTapXemChiTietSP />
     </div>
   );
 }
