@@ -41,9 +41,13 @@ export default class GioHang extends Component {
                                                 <td><img src={spGH.hinhAnh} alt="..." width={50} height={50} /></td>
                                                 <td>{spGH.giaBan}</td>
                                                 <td>
-                                                    <button className='btn btn-primary'>+</button>
+                                                    <button className='btn btn-primary' onClick={()=>{
+                                                        this.props.tangGiamSoLuong(spGH.maSP,1)
+                                                    }}>+</button>
                                                     {spGH.soLuong}
-                                                    <button className='btn btn-primary ml-2'>-</button>
+                                                    <button className='btn btn-primary ml-2' onClick={()=>{
+                                                        this.props.tangGiamSoLuong(spGH.maSP,-1)
+                                                    }}>-</button>
                                                 
                                                 </td>
                                                 <td>{spGH.giaBan * spGH.soLuong}</td>

@@ -28,6 +28,32 @@ export default class BaiTapXemChiTietSP extends Component {
         ]
     }
 
+    //State đặt ở đâu thì hàm setState sẽ đặt ở component đó
+    tangGiamSoLuong = (maSP,soLuong) => {
+        let gioHangUpdate = [...this.state.gioHang];
+
+        let spTangGiam = gioHangUpdate.find(sp => sp.maSP === maSP);
+        if(spTangGiam){
+            spTangGiam.soLuong += soLuong;
+            //Kiểm tra sau khi +- số lượng <1
+            if(spTangGiam.soLuong <1){
+                if(window.confirm('Bạn có muốn xoá hay không ?')) {
+                    this.xoaGioHang(spTangGiam.maSP);
+                    return ;
+                }
+                spTangGiam.soLuong -= soLuong; 
+            }
+
+        }
+
+        //setState
+        this.setState({
+            gioHang: gioHangUpdate
+        })
+    }
+
+
+
     //Hàm xoá giỏ hàng viết tại nơi chứa state.gioHang
     xoaGioHang = (maSPClick) => {
         let gioHangUpdate = [...this.state.gioHang];
@@ -74,14 +100,29 @@ export default class BaiTapXemChiTietSP extends Component {
         })
     }
 
+    tinhTongSoLuong = () => {
+        //giỏ hàng [{maSP:1,soLuong:2} {maSP:3,soLuong:5}]
+        // let tongSoLuong = 0;     //output: tổng số lượng
+
+        // for(let spGH of this.state.gioHang) {
+        //     tongSoLuong+= spGH.soLuong;
+        // }
+        // return tongSoLuong;
+        return this.state.gioHang.reduce((soLuong,spGioHang,index) => {
+            return soLuong+= spGioHang.soLuong
+        },0);
+
+        // return tongSoLuong;
+   
+    }
 
     render() {
         let { maSP, tenSP, hinhAnh, giaBan, manHinh, ram, rom, cameraSau, cameraTruoc, heDieuHanh } = this.state.sanPhamChiTiet;
         return (
             <div className='container'>
                 <div className='mt-5'>
-                    <h3 data-toggle="modal" data-target="#modelId" className='text-danger font-weight-bold text-right' style={{cursor:'pointer'}}>Giỏ hàng(0)</h3>
-                    <GioHang gioHang={this.state.gioHang} xoaSanPham = {this.xoaGioHang} />
+                    <h3 data-toggle="modal" data-target="#modelId" className='text-danger font-weight-bold text-right' style={{cursor:'pointer'}}>Giỏ hàng({this.tinhTongSoLuong()})</h3>
+                    <GioHang tangGiamSoLuong={this.tangGiamSoLuong} gioHang={this.state.gioHang} xoaSanPham = {this.xoaGioHang} />
                 </div>
                 <h3 className='text-center display-4'>Danh sách sản phẩm</h3>
                 <div className='row'>
