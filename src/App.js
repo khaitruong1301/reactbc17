@@ -7,6 +7,7 @@ import Ex1StateDemo from './StateDemo/Ex1StateDemo';
 import RenderWithMap from './RenderWithMap/RenderWithMap';
 import QuanLyDanhSachPhim from './RenderWithMap/QuanLyDanhSachPhim';
 import BaiTapXemChiTietSP from './Props/BaiTapXemChiTietSP/BaiTapXemChiTietSP';
+import BaiTapGioHangRedux from './DemoRedux/BaiTapGioHangRedux/BaiTapGioHangRedux';
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
       {/* <Ex1StateDemo /> */}
       {/* <RenderWithMap /> */}
       {/* <QuanLyDanhSachPhim /> */}
-      <BaiTapXemChiTietSP />
+      {/* <BaiTapXemChiTietSP /> */}
+      <BaiTapGioHangRedux />
     </div>
   );
 }
