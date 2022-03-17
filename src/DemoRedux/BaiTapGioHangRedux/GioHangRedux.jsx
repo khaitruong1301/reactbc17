@@ -26,10 +26,20 @@ class GioHangRedux extends Component {
                 <img src={spGH.hinhAnh} alt='...' width={50} />
               </td>
               <td>{spGH.giaBan}</td>
-              <td>{spGH.soLuong}</td>
+              <td>
+                <button className='btn btn-primary' onClick={()=>{
+                  this.props.tangGiamSoLuong(spGH.maSP,1)
+                }}>+</button>
+                {spGH.soLuong}
+                <button className='btn btn-primary ml-2' onClick={()=>{
+                    this.props.tangGiamSoLuong(spGH.maSP,-1)
+                }}>-</button>
+              </td>
               <td>{spGH.giaBan * spGH.soLuong}</td>
               <td>
-                <button className='btn btn-danger'>
+                <button className='btn btn-danger' onClick={() => {
+                  this.props.xoaGioHang(spGH.maSP)
+                }}>
                   Xoá
                 </button>
               </td>
@@ -52,6 +62,34 @@ const mapStateToProps = (rootReducer) => {
     number: rootReducer.numberReducer
   }
 }
+//Định nghĩa hàm mapdispatchToPreops để tạo ra props là phương thức gửi dữ liệu lên reducer
+const mapDispatchToProps = (dispatch) => {
+  return { //new props
+    xoaGioHang: (maSPXoa) => {
+      // console.log('Mã sản phẩm click xoá',maSPXoa);
+      // alert(maSPXoa);
+      if (window.confirm('Bạn muốn xoá không ?')) {
+        const action = {
+          type: 'XOA_GIO_HANG',
+          maSPXoa
+        };
+        //Sử dụng hàm dispatch để đưa action lên tất cả reducer
+        dispatch(action);
+      }
+    },
+    tangGiamSoLuong: (maSP,soLuong) =>{
+      // alert(maSP + '-'+soLuong);
+      const action = {
+        type:'TANG_GIAM_SL',
+        maSP,
+        soLuong
+      }
+      console.log('action',action)
+      //Sau khi bấm + - tạo dữ liệu action gửi lên redux
+      dispatch(action)
+    }
+  }
+}
 
 //Khi connect được gọi sẽ trả về 1 component đã được kết nối với redux store, và mình export default component đó ra luôn
-export default connect(mapStateToProps)(GioHangRedux);
+export default connect(mapStateToProps, mapDispatchToProps)(GioHangRedux);

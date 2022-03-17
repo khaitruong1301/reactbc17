@@ -8,6 +8,7 @@ import RenderWithMap from './RenderWithMap/RenderWithMap';
 import QuanLyDanhSachPhim from './RenderWithMap/QuanLyDanhSachPhim';
 import BaiTapXemChiTietSP from './Props/BaiTapXemChiTietSP/BaiTapXemChiTietSP';
 import BaiTapGioHangRedux from './DemoRedux/BaiTapGioHangRedux/BaiTapGioHangRedux';
+import GameXucXac from './DemoRedux/GameXucXac/GameXucXac';
 
 function App() {
   return (
@@ -19,9 +20,12 @@ function App() {
       {/* <RenderWithMap /> */}
       {/* <QuanLyDanhSachPhim /> */}
       {/* <BaiTapXemChiTietSP /> */}
-      <BaiTapGioHangRedux />
+      {/* <BaiTapGioHangRedux /> */}
+      <GameXucXac />
     </div>
   );
 }
+
+
 
 export default App;
