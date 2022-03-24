@@ -10,6 +10,7 @@ import BaiTapXemChiTietSP from './Props/BaiTapXemChiTietSP/BaiTapXemChiTietSP';
 import BaiTapGioHangRedux from './DemoRedux/BaiTapGioHangRedux/BaiTapGioHangRedux';
 import GameXucXac from './DemoRedux/GameXucXac/GameXucXac';
 import BaiTapQuanLyNguoiDung from './ReactForm/BaiTapQuanLyNguoiDung/BaiTapQuanLyNguoiDung';
+import ReactLifeCycle from './ReactLifeCycle/ReactLifeCycle';
 
 function App() {
   return (
@@ -23,7 +24,8 @@ function App() {
       {/* <BaiTapXemChiTietSP /> */}
       {/* <BaiTapGioHangRedux /> */}
       {/* <GameXucXac /> */}
-      <BaiTapQuanLyNguoiDung />
+      {/* <BaiTapQuanLyNguoiDung /> */}
+      <ReactLifeCycle />
     </div>
   );
 }
