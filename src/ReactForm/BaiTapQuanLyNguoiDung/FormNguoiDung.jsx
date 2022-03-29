@@ -26,19 +26,19 @@ class FormNguoiDung extends Component {
         let { value, id, name } = e.target; //value: khai123 id="taiKhoan" name="taiKhoan"
         let typeMeta = e.target.getAttribute('typeMeta'); //attribute là thuộc tính mở rộng của thẻ
 
-        console.log('typeMeta',typeMeta);
+        console.log('typeMeta', typeMeta);
 
-        let newValues = {...this.state.values};
+        let newValues = { ...this.state.values };
         newValues[id] = value;
 
-        let newErrors = {...this.state.errors};
+        let newErrors = { ...this.state.errors };
         let messageError = '';
-        if(value === '') {
+        if (value === '') {
             messageError = id + ' không được bỏ trống !';
         }
-        if(typeMeta === 'email') {
+        if (typeMeta === 'email') {
             let regexEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-            if(!regexEmail.test(value)) {
+            if (!regexEmail.test(value)) {
                 messageError = id + ' không đúng định dạng !';
             }
 
@@ -47,9 +47,9 @@ class FormNguoiDung extends Component {
 
         //setState
         this.setState({
-            values:newValues,
-            errors:newErrors
-        },() => {
+            values: newValues,
+            errors: newErrors
+        }, () => {
             console.log(this.state);
         })
 
@@ -57,38 +57,60 @@ class FormNguoiDung extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault(); //Đây là hàm cản sự kiện reload của browser
-        console.log('values',this.state.values);
+        console.log('values', this.state.values);
         //Kiểm tra dữ liệu có bị lỗi hay không trước khi submit
         let valid = true;
         //Lấy ra this.state.errors kiểm tra
-        let {errors,values} = this.state;
-        for(let key in errors) {
+        let { errors, values } = this.state;
+        for (let key in errors) {
             //Nếu như có 1 trường error nào không hợp lệ
-            if(errors[key] !== '') {
+            if (errors[key] !== '') {
                 valid = false;
             }
         }
 
-        for(let key in values) {
+        for (let key in values) {
             //Nếu có 1 trường value nào = rổng => không hợp lệ
-            if(values[key] === '') {
+            if (values[key] === '') {
                 valid = false;
             }
         }
-        if(!valid) {
+        if (!valid) {
             alert('Dữ liệu nhập không hợp lệ');
             return;
         }
         //Nếu hợp lệ gửi dữ liệu đi => lên redux
         const action = {
-            type:'THEM_NGUOI_DUNG',
+            type: 'THEM_NGUOI_DUNG',
             nguoiDung: this.state.values
         }
         //Đưa dữ liệu lên redux 
         this.props.dispatch(action)
     }
+    //Can thiệp vào lifecycle khi props hoặc state thay đổi thành hàm này sẽ thực thi trước khi render
+    // static getDerivedStateFromProps(newProps, state) {
+
+    //     // //Chỉ khi nào ng dùng bấm nút sửa thì mới xử lý này
+    //     if (state.values.taiKhoan !== newProps.nguoiDungSua.taiKhoan) {
+    //         console.log('newProps', newProps);
+    //         console.log('currentState', state);
+    //         //Lấy dữ liệu từ newprops gán vào state => sau khi render dữ liệu binding từ state
+    //         state.values = { ...newProps.nguoiDungSua }
+    //     }
+    //     return state;
+    // }
+    //Chỉ chạy khi props thay đổi
+    componentWillReceiveProps(newProps) {
+        this.setState({
+            values:newProps.nguoiDungSua
+        })
+    }
+
+
+
     render() {
-        let {taiKhoan,hoTen,matKhau,email,loaiNguoiDung,soDienThoai} = this.props.nguoiDungSua;
+        console.log('abc')
+        let { taiKhoan, hoTen, matKhau, email, maLoaiNguoiDung, soDienThoai } = this.state.values;
         return (
             <form onSubmit={this.handleSubmit}>
                 <div className='card'>
@@ -131,7 +153,7 @@ class FormNguoiDung extends Component {
                                 </div>
                                 <div className='form-group'>
                                     <p>Loại người dùng</p>
-                                    <select value={loaiNguoiDung} className='form-control' id='maLoaiNguoiDung' onChange={this.handleChangeInput} name='maLoaiNguoiDung'>
+                                    <select value={maLoaiNguoiDung} className='form-control' id='maLoaiNguoiDung' onChange={this.handleChangeInput} name='maLoaiNguoiDung'>
                                         <option>QuanTri</option>
                                         <option>NguoiDung</option>
                                     </select>
@@ -141,6 +163,15 @@ class FormNguoiDung extends Component {
                     </div>
                     <div className='card-footer'>
                         <button type='submit' className='btn btn-success'>Đăng ký</button>
+                        <button className='btn btn-primary ml-2' type='button' onClick={()=> {
+                            //Gửi dữ liệu về redux thay đổi mảng người dùng
+                            const action = {
+                                type: 'CAP_NHAP_THONG_TIN',
+                                nguoiDung: this.state.values
+                            }
+                            //Đưa dữ liệu lên redux
+                            this.props.dispatch(action);
+                        }} >Cập nhật người dùng</button>
                     </div>
                 </div>
             </ form>

@@ -23,7 +23,7 @@ class TableNguoiDung extends Component {
               <td>{nguoiDung.hoTen}</td>
               <td>{nguoiDung.email}</td>
               <td>{nguoiDung.soDienThoai}</td>
-              <td>{nguoiDung.loaiNguoiDung}</td>
+              <td>{nguoiDung.maLoaiNguoiDung}</td>
               <td>
                 <button onClick={()=>{
                   const action = {

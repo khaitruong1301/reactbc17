@@ -2,15 +2,15 @@
 
 const stateDefault = { //0xxx
     mangNguoiDung: [
-        { taiKhoan: 'nguyenvana', hoTen: 'Nguyễn Văn A', matKhau: '123123', email: 'nguyenvana@gmail.com', loaiNguoiDung: 'QuanTri', soDienThoai: '0909090909' },
-        { taiKhoan: 'tranthibi', hoTen: 'Trần Thị B', matKhau: '123123', email: 'tranthib@gmail.com', loaiNguoiDung: 'NguoiDung', soDienThoai: '0808080808' },
+        { taiKhoan: 'nguyenvana', hoTen: 'Nguyễn Văn A', matKhau: '123123', email: 'nguyenvana@gmail.com', maLoaiNguoiDung: 'QuanTri', soDienThoai: '0909090909' },
+        { taiKhoan: 'tranthibi', hoTen: 'Trần Thị B', matKhau: '123123', email: 'tranthib@gmail.com', maLoaiNguoiDung: 'NguoiDung', soDienThoai: '0808080808' },
     ],
     nguoiDungSua: {
         taiKhoan: '',
         hoTen: '',
         matKhau: '',
         email: '',
-        loaiNguoiDung: '',
+        maLoaiNguoiDung: 'QuanTri',
         soDienThoai: ''
     }
 
@@ -46,6 +46,22 @@ export const quanLyNguoiDungReducer = (state = stateDefault, action) => {
             state.nguoiDungSua = action.nguoiDung;
 
             return {...state};
+        }
+
+        case 'CAP_NHAP_THONG_TIN': {
+            let mangNguoiDung = [...state.mangNguoiDung];
+            let ndUpdate = mangNguoiDung.find(nguoiDung => nguoiDung.taiKhoan === action.nguoiDung.taiKhoan);
+            if(ndUpdate) {
+                //Lấy giá trị người dùng thay đổi (action.nguoiDung)
+                // ndUpdate.hoTen = action.nguoiDung.hoTen;
+                for(let key in ndUpdate){
+                    ndUpdate[key] = action.nguoiDung[key];
+                }
+            }
+            //Sau khi sửa cập nhật lại state
+            state.mangNguoiDung = mangNguoiDung;
+            return {...state}
+
         }
 
         default: return state;
