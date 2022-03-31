@@ -26,13 +26,16 @@ export default function HeaderHome() {
                     <li className="nav-item">
                         <NavLink exact activeClassName='bg-white text-dark' className="nav-link" to="/register">register</NavLink>
                     </li>
-                    {/* <li className="nav-item dropdown">
-                        <a className="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                    <li className="nav-item">
+                        <NavLink exact activeClassName='bg-white text-dark' className="nav-link" to="/todoapp">Todoapp</NavLink>
+                    </li>
+                    <li className="nav-item dropdown">
+                        <a className="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hooks</a>
                         <div className="dropdown-menu" aria-labelledby="dropdownId">
-                            <a className="dropdown-item" href="#">Action 1</a>
-                            <a className="dropdown-item" href="#">Action 2</a>
+                            <NavLink className="dropdown-item" to="/usestate">Use state</NavLink>
+                            
                         </div>
-                    </li> */}
+                    </li>
                 </ul>
                 <form className="form-inline my-2 my-lg-0">
                     <input className="form-control mr-sm-2" type="text" placeholder="Search" />
