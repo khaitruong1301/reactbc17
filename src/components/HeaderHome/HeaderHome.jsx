@@ -33,6 +33,12 @@ export default function HeaderHome() {
                         <a className="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hooks</a>
                         <div className="dropdown-menu" aria-labelledby="dropdownId">
                             <NavLink className="dropdown-item" to="/usestate">Use state</NavLink>
+                            <NavLink className="dropdown-item" to="/useeffect">Use effect</NavLink>
+                            <NavLink className="dropdown-item" to="/usecallback">Use callback</NavLink>
+                            <NavLink className="dropdown-item" to="/usememo">Use memo</NavLink>
+                            <NavLink className="dropdown-item" to="/useref">Use ref</NavLink>
+                            <NavLink className="dropdown-item" to="/reduxhook">redux hook</NavLink>
+                            <NavLink className="dropdown-item" to="/todolisthook">To do list hook</NavLink>
                             
                         </div>
                     </li>

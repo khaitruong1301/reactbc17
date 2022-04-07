@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { getApiArrTaskAction } from '../../../redux/actions/toDoListAction'
 export default class ToDoApp extends Component {
 
     state = {
-        arrTask: []
+        arrTask: [],
+        number:1
     }
 
     getTaskApi= () => {
+
         let promise = axios({
             url: 'http://svcy.myclass.vn/api/ToDoList/GetAllTask',
             method:'GET'
