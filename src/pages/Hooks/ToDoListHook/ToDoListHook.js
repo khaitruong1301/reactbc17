@@ -4,26 +4,13 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getApiArrTaskAction } from '../../../redux/actions/toDoListAction';
 export default function ToDoListHook() {
     // const [arrTask, setArrTask] = useState([]);
+    const [task,setTask] = useState({
+        taskName: '',
+        status:false
+    })
     const { arrTask } = useSelector(state => state.toDoListReducer);
     const dispatch = useDispatch();
     useEffect(async () => {
-        // try {
-        //     //gọi api
-        //     const result = await axios({
-        //         url: 'http://svcy.myclass.vn/api/ToDoList/GetAllTask',
-        //         method: 'get'
-        //     });
-        //     // console.log(result.data);
-        //     // await setArrTask(result.data);
-        //     const action = {
-        //         type: 'GET_ALL_TASK_API',
-        //         arrTask: result.data
-        //     }
-        //     dispatch(action);            
-        // } catch (err) {
-
-        // } 
-
         /*
             Trong redux có 2 dạng action 
             + action : {type:'',payload:'data_gui_di'}
@@ -41,11 +28,17 @@ export default function ToDoListHook() {
         <div className='container'>
             {/*Xoá button get task api */}
             <h3 className='text-center'>To do app</h3>
-            <div className='card'>
+            <form className='card'>
                 <div className='card-header'>
                     <div className='input-group-prepend mb-3'>
                         <span className='input-group-text btn btn-success'>Add task</span>
-                        <input className='form-control' id="taskName" />
+                        <input onChange={(e)=>{
+                            let {value,id} = e.target;
+                            setTask({
+                                ...task,
+                                [id]:taskName
+                            })
+                        }} className='form-control' id="taskName" />
                     </div>
                 </div>
                 <div className='card-body'>
@@ -75,7 +68,7 @@ export default function ToDoListHook() {
                         </tfoot>
                     </table>
                 </div>
-            </div>
+            </form>
 
         </div>
     )

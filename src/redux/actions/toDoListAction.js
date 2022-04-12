@@ -18,7 +18,11 @@ export const getApiArrTaskAction = () => {
                 arrTask: result.data
             }
             dispatch(action);
-        } catch (err) {
+        } catch (err) { 
+        
+        
+        
+        
 
         }
     }
