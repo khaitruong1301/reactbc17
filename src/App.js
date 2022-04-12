@@ -16,23 +16,33 @@ import UseMemoDemo from './pages/Hooks/UseMemo/UseMemoDemo';
 import UseRefDemo from './pages/Hooks/UseRef/UseRefDemo';
 import ReduxHook from './pages/Hooks/ReduxHook/ReduxHook';
 import ToDoListHook from './pages/Hooks/ToDoListHook/ToDoListHook';
+import DemoHOC from './pages/HOC/DemoHOC/DemoHOC';
+import ModalHOC from './pages/HOC/DemoHOC/ModalHOC';
+import HomeTemplate from './templates/HomeTempalte/HomeTemplate';
 
 
 function App() {
   return (
     <BrowserRouter>
-      <HeaderHome />
-
+      {/* <HeaderHome /> */}
+      <ModalHOC />
       <Switch>
-        <Route exact path={'/home'} render={(pRoute) => { //propRoute là props của thẻ Route bao gồm : history,match,location
+        {/* <Route exact path={'/home'} render={(pRoute) => { //propRoute là props của thẻ Route bao gồm : history,match,location
           return <div>
             <HeaderHome />
             <Home {...pRoute} />
           </div>
         }} />
-        <Route exact path={'/about'} component={About} />
-        <Route exact path={'/contact'} component={Contact} />
-        <Route exact path={'/login'} component={Login} />
+        <Route exact path={'/about'} render={(pRoute) => { //propRoute là props của thẻ Route bao gồm : history,match,location
+          return <div>
+            <HeaderHome />
+            <About {...pRoute} />
+          </div>
+        }} /> */}
+        <HomeTemplate path='/home' component={Home} />
+        <HomeTemplate path='/about' component={About} />
+        <HomeTemplate exact path={'/contact'} component={Contact} />
+        <HomeTemplate exact path={'/login'} component={Login} />
         <Route exact path={'/register'} component={Register} />
         <Route exact path={'/profile'} component={Profile} />
         <Route exact path={'/detail/:id'} component={Detail} />
@@ -44,6 +54,7 @@ function App() {
         <Route exact path={'/useref'} component={UseRefDemo} />
         <Route exact path={'/reduxhook'} component={ReduxHook} />
         <Route exact path={'/todolisthook'} component={ToDoListHook} />
+        <Route exact path={'/demohoc'} component={DemoHOC} />
 
         <Route exact path={'/'} component={Home} />
       </Switch>
