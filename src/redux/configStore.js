@@ -7,6 +7,7 @@ import { toDoListReducer } from './reducers/toDoListReducer';
 //Cấu hình redux thunk
 import thunk from 'redux-thunk'
 import { modalReducer } from './reducers/ModalReducer';
+import { phimReducer } from './reducers/phimReducer';
 
 //rootReducer xem như state tổng của ứng dụng
 const rootReducer = combineReducers({
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
     quanLyNguoiDungReducer:quanLyNguoiDungReducer,
     fakeBookAppReducer:fakeBookAppReducer,
     toDoListReducer:toDoListReducer,
-    modalReducer:modalReducer
+    modalReducer:modalReducer,
+    phimReducer:phimReducer
     //
 });
 
