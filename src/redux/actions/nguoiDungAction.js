@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { TOKEN_CYBERSOFT } from '../../util/setting'
+import { http, TOKEN_CYBERSOFT } from '../../util/setting'
 import { ACCESSTOKEN, USER_LOGIN } from './types/nguoiDungType';
 
 
@@ -10,14 +10,15 @@ export const dangNhapAction = (userLogin) => {
 
     return async dispatch => {
         try{
-            let result = await axios({
-                url:'https://movienew.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap',
-                data:userLogin,
-                method:'POST',
-                headers: {
-                    'TokenCybersoft': TOKEN_CYBERSOFT
-                }
-            });
+            let result = await http.post('/api/QuanLyNguoiDung/DangNhap',userLogin);
+            // axios({
+            //     url:'https://movienew.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap',
+            //     data:userLogin,
+            //     method:'POST',
+            //     headers: {
+            //         'TokenCybersoft': TOKEN_CYBERSOFT
+            //     }
+            // });
 
             console.log('result',result.data)
             //Sau khi đăng nhập thành công 
@@ -47,14 +48,16 @@ export const layThongTinCaNhanAction = () => {
 
     return async dispatch => {
         try {
-            const result = await axios({
-                url:'https://movienew.cybersoft.edu.vn/api/QuanLyNguoiDung/thongtintaikhoan',
-                method:'POST',
-                headers:{
-                    'TokenCybersoft': TOKEN_CYBERSOFT,
-                    'Authorization': 'Bearer '+ localStorage.getItem(ACCESSTOKEN)
-                }
-            });
+            const result = await http.post('/api/QuanLyNguoiDung/thongtintaikhoan');
+            // axios({
+            //     url:'https://movienew.cybersoft.edu.vn/api/QuanLyNguoiDung/thongtintaikhoan',
+            //     method:'POST',
+                
+            //     headers:{
+            //         'TokenCybersoft': TOKEN_CYBERSOFT,
+            //         'Authorization': 'Bearer '+ localStorage.getItem(ACCESSTOKEN)
+            //     }
+            // });
 
             console.log(result);
 
