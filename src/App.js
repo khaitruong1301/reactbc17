@@ -26,6 +26,7 @@ import User from './pages/AdminPage/Users/User';
 import DemoAntD from './pages/DemoAntD/DemoAntD';
 import DemoLayout from './pages/DemoAntD/DemoLayout';
 import DemoFormik from './pages/DemoFormik/DemoFormik';
+import HomeMobile from './pages/Home/HomeMobile';
 
 function App() {
   return (
@@ -34,7 +35,7 @@ function App() {
       <ModalHOC />
       <Switch>
       
-        <HomeTemplate path='/home' component={Home} />
+        <HomeTemplate path='/home' component={Home} mobileComponent={HomeMobile} />
         <HomeTemplate path='/about' component={About} />
         <HomeTemplate exact path={'/contact'} component={Contact} />
         <UserTemplate exact path={'/login'} component={Login} />
@@ -58,7 +59,7 @@ function App() {
 
         <Route path={'/admin/demolayout'} component={DemoLayout} />
 
-        <Route exact path={'/'} component={Home} />
+        <HomeTemplate exact path={'/'} component={Home} mobileComponent={HomeMobile}/>
       </Switch>
 
     </BrowserRouter>

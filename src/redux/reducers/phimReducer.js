@@ -3,7 +3,10 @@
 
 
 const stateDefault = {
-    mangPhim: []
+    mangPhim: [],
+    chiTietPhim: {
+        // heThongRapChieu:[]
+    }
 }
 
 
@@ -14,6 +17,11 @@ export const phimReducer = (state = stateDefault,action) => {
             state.mangPhim = action.data;
 
             return {...state}
+        }
+
+        case 'LAY_CHI_TIET_PHIM' : {
+            state.chiTietPhim = action.data;
+            return {...state};
         }
 
         default : return state;

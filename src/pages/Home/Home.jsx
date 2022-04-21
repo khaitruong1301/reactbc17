@@ -2,6 +2,7 @@ import React, { Component, useEffect } from 'react'
 import HeaderHome from '../../components/HeaderHome/HeaderHome';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPhimAction } from '../../redux/actions/phimAction';
+import { NavLink } from 'react-router-dom';
 export default function Home(props) {
 
   const {mangPhim} = useSelector(state=>state.phimReducer);
@@ -20,12 +21,13 @@ export default function Home(props) {
 
       <div className='row'>
         {mangPhim.map((phim,index)=>{
-          return <div className='col-4' key={index}>
+          return <div className='col-md-4' key={index}>
           <div className="card text-left">
             <img className="card-img-top" src={phim.hinhAnh} alt="..." />
             <div className="card-body">
               <h4 className="card-title">{phim.tenPhim}</h4>
               <p className="card-text">{phim.moTa}</p>
+              <NavLink className='btn btn-success' to={`/detail/${phim.maPhim}`}>Đặt vé</NavLink>
             </div>
           </div>
         </div>
